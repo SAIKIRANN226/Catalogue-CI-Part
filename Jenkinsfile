@@ -23,5 +23,12 @@ pipeline {
                 }
             }
         }
+        stage('Install dependencies') { // For building the code we need npm dependencies
+            steps {
+                sh """
+                    npm install
+                """
+            }
+        }
     }
 }
