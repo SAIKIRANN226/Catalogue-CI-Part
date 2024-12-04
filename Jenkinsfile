@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         packageVersion = ''
-        nexusURL = ''
+        nexusURL = 'http://54.81.65.159:8081/repository/catalogue-repo/'
     }
     options {
         timeout(time: 1, unit: 'HOURS')
@@ -27,6 +27,15 @@ pipeline {
             steps {
                 sh """
                     npm install
+                """
+            }
+        }
+        stage('Build') {
+            steps {
+                sh """
+                    ls -la
+                    zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
+                    ls -ltr
                 """
             }
         }
