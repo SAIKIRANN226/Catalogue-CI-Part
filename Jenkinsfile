@@ -6,7 +6,7 @@ pipeline {
     }
     environment { 
         packageVersion = ''
-        nexusURL = 'http://44.203.64.34:8081/repository/Catalogue-nexus-repo/'
+        nexusURL = 'http://3.82.26.52:8081/repository/catalogue/'
     }
     options {
         ansiColor('xterm')
@@ -57,10 +57,10 @@ pipeline {
                  nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: "http://44.203.64.34:8081/repository/Catalogue-nexus-repo/",
+                    nexusUrl: "http://3.82.26.52:8081/repository/catalogue/",
                     groupId: 'com.roboshop',
                     version: "${packageVersion}",
-                    repository: 'Catalogue-nexus-repo',
+                    repository: 'catalogue',
                     credentialsId: 'ssh-auth2',
                     artifacts: [
                         [artifactId: 'catalogue',
