@@ -36,5 +36,12 @@ pipeline {
                 echo 'Running unit tests'
             }
         }
+        stage('Sonar scan'){
+            steps{
+                script{
+                    echo 'Running scan'
+                }
+            }
+        }
     }
 }
