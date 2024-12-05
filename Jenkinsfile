@@ -24,11 +24,17 @@ pipeline {
                 }
             }
         }
-        stage('Installing dependencies'){
+        stage('Installing dependencies...'){
             steps{
                 sh """
                     npm install
                 """
+            }
+        }
+        stage('Unit Test') {
+            steps {
+                echo 'Running unit tests...'
+                sh 'npm test'
             }
         }
     }
