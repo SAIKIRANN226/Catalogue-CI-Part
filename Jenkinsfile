@@ -24,7 +24,7 @@ pipeline {
                 }
             }
         }
-        stage('Installing dependencies...'){
+        stage('Installing dependencies'){
             steps{
                 sh """
                     npm install
@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Unit Test'){
             steps {
-                echo 'Running unit tests...'
+                echo 'Running unit tests'
             }
         }
     }
