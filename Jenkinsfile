@@ -26,5 +26,35 @@ pipeline {
                 }
             }
         }
+        stage('Installing dependencies') {
+            steps {
+                sh """
+                    npm install
+                """
+            }
+        }
+        stage('Unit test') {
+            steps {
+                sh """
+                    echo "unit tests will run here"
+                """
+            }
+        }
+        stage('Sonar Scan'){
+            steps{
+                sh """
+                    sonar-scanner
+                """
+            }
+        }
+        stage('Build') {
+            steps {
+                sh """
+                    ls -la 
+                    zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
+                    ls -ltr
+                """
+            }
+        }
     }
 }
