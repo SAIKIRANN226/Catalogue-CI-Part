@@ -33,7 +33,7 @@ pipeline {
             steps {
                 sh """
                     ls -la
-                    zip -r archive.zip Jenkinsfile package.json package-lock.json server.js schema .git node_modules
+                    zip -rq archive.zip Jenkinsfile package.json package-lock.json server.js schema .git node_modules
                     echo "Zip files success"
                 """
             }
