@@ -19,6 +19,7 @@ pipeline {
                 sh """
                     npm install
                     echo "Dependencies installed"
+                    npm install -g pm2
                 """
             }
         }
@@ -57,6 +58,14 @@ pipeline {
                         type: 'zip']
                     ]
                 )
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    sshPublisher(publishers: [sshPublisherDesc(configName: 'producction', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''sudo apt install unzip -y
+                    unzip catalogue.zip''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/centos/', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*.zip')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
                 }
             }
         }
