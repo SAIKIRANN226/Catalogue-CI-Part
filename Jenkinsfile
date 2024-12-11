@@ -30,6 +30,7 @@ pipeline {
                         error "Unit tests failed"
                     } else {
                         echo "Unit tests passed"
+                    }
                 }
             }
         }
