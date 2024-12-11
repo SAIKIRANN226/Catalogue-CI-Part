@@ -14,5 +14,12 @@ pipeline {
                 }
             }
         }
+        stage('Installing dependencies') {
+            steps {
+                sh """
+                    npm install
+                """
+            }
+        }
     }
 }
