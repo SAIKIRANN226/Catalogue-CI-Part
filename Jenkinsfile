@@ -10,6 +10,7 @@ pipeline {
             steps {
                 script {
                     env.Version=readJSON(file: 'package.json').version
+                    echo "Package version is $version"
                 }
             }
         }
