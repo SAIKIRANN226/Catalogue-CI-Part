@@ -39,5 +39,16 @@ pipeline {
                 """
             }
         }
+        stage('Nexus artifact uploader') {
+            NEXUS_URL="http://35.173.231.255:8081/repository/catalogue/"
+            REPO="catalogue"
+            FILE_PATH="catalogue.zip" 
+            GROUP_ID="com.roboshop" 
+            ARTIFACT_ID="catalogue" 
+            VERSION="1.0.0"  
+            UPLOAD_URL="${NEXUS_URL}/repository/${REPO}/${GROUP_ID}/${ARTIFACT_ID}/${VERSION}/${ARTIFACT_ID}-${VERSION}.zip"
+            NEXUS_USERNAME="admin"
+            NEXUS_PASSWORD="saikiran123"
+        }
     }
 }
