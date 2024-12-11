@@ -18,8 +18,10 @@ pipeline {
             steps {
                 sh """
                     npm install
+                    echo "Dependencies installed"
                 """
             }
         }
+        stage('Unit testing')
     }
 }
