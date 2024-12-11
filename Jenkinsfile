@@ -33,6 +33,7 @@ pipeline {
             steps {
                 sh """
                     ls -la
+                    zip -r archive.zip Jenkinsfile package.json package-lock.json server.js schema .git node_modules
                 """
             }
         }
