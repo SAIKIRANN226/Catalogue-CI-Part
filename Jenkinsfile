@@ -42,15 +42,21 @@ pipeline {
         stage('Nexus artifact uploader') {
             steps {
                 script {
-                    NEXUS_URL="http://35.173.231.255:8081/repository/catalogue/"
-                    REPO="catalogue"
-                    FILE_PATH="catalogue.zip" 
-                    GROUP_ID="com.roboshop" 
-                    ARTIFACT_ID="catalogue" 
-                    VERSION="1.0.0"  
-                    UPLOAD_URL="${NEXUS_URL}/repository/${REPO}/${GROUP_ID}/${ARTIFACT_ID}/${VERSION}/${ARTIFACT_ID}-${VERSION}.zip"
-                    NEXUS_USERNAME="admin"
-                    NEXUS_PASSWORD="saikiran123"
+                    nexusArtifactUploader(
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    nexusUrl: "35.173.231.255:8081",
+                    groupId: 'com.roboshop',
+                    version: "${version}",
+                    repository: 'catalogue',
+                    credentialsId: 'nexus-auth',
+                    artifacts: [
+                        [artifactId: 'catalogue',
+                        classifier: '',
+                        file: 'catalogue.zip',
+                        type: 'zip']
+                    ]
+                )
                 }
             }
         }
