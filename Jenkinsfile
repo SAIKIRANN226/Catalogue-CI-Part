@@ -29,5 +29,12 @@ pipeline {
                 }
             }
         }
+        stage('Build') {
+            steps {
+                sh """
+                    ls -la
+                """
+            }
+        }
     }
 }
