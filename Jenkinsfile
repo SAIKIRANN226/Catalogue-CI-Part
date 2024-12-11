@@ -22,6 +22,5 @@ pipeline {
                 """
             }
         }
-        stage('Unit testing')
     }
 }
