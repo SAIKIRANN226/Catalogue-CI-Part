@@ -63,10 +63,13 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                script {
-                    sshPublisher(publishers: [sshPublisherDesc(configName: 'producction', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''sudo apt install unzip -y
-                    unzip catalogue.zip''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/centos/jenkins-agent', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*.zip')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-                }
+               script {
+                    def params = [
+                        string(name: 'version', value: "$version"),
+                        string(name: 'environment', value: "dev")
+                    ]
+                    build job: "Catalogue-CD-Part", wait: true, parameters: params
+               }
             }
         }
     }
