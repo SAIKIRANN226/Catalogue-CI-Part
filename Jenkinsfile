@@ -6,7 +6,7 @@ pipeline {
     }
     environment { 
         packageVersion = ''
-        nexusURL = '172.31.5.95:8081'
+        nexusURL = '172.31.87.43:8081'
     }
     options {
         timeout(time: 1, unit: 'HOURS')
@@ -53,7 +53,7 @@ pipeline {
                     nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: "35.173.231.255:8081",
+                    nexusUrl: "172.31.87.43:8081",
                     groupId: 'com.roboshop',
                     version: "${packageVersion}",
                     repository: 'catalogue',
