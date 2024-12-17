@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Get the version') {
             steps {
-                script { // It is a groovy scripting thats why we put the word "script" not shellscript
+                script { // It is a groovy scripting thats why we put the word "script" not shellscript, to read this json file we need to download "pipelineUtility steps" plugin in manage jenkins
                     def packageJson = readJSON file: 'package.json'
                     packageVersion = packageJson.version
                     echo "application version: $packageVersion"
