@@ -42,9 +42,8 @@ pipeline {
             steps {
                 sh """
                     ls -la
-                    zip -rq archive.zip Jenkinsfile package.json package-lock.json server.js schema .git node_modules
-                    mv archive.zip catalogue.zip
-                    echo "Zip files success"
+                    zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
+                    ls -ltr
                 """
             }
         }
@@ -56,7 +55,7 @@ pipeline {
                     protocol: 'http',
                     nexusUrl: "35.173.231.255:8081",
                     groupId: 'com.roboshop',
-                    version: "${version}",
+                    version: "${packageVersion}",
                     repository: 'catalogue',
                     credentialsId: 'nexus-auth',
                     artifacts: [
