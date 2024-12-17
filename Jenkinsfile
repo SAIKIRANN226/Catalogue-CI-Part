@@ -4,7 +4,6 @@ pipeline {
             label 'SAIKIRAN-LABEL'
         }
     }
-
     environment { 
         packageVersion = ''
         nexusURL = '172.31.5.95:8081'
