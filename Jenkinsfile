@@ -5,12 +5,22 @@ pipeline {
         }
     }
 
+    environment { 
+        packageVersion = ''
+        nexusURL = '172.31.5.95:8081'
+    }
+    options {
+        timeout(time: 1, unit: 'HOURS')
+        disableConcurrentBuilds()
+    }
+
     stages {
         stage('Get the version') {
             steps {
-                script {
-                    env.Version=readJSON(file: 'package.json').version
-                    echo "Package version is $version"
+                script { // It is a groovy scripting thats why we put the word "script" not shellscript
+                    def packageJson = readJSON file: 'package.json'
+                    packageVersion = packageJson.version
+                    echo "application version: $packageVersion"
                 }
             }
         }
@@ -65,7 +75,7 @@ pipeline {
             steps {
                script {
                     def params = [
-                        string(name: 'version', value: "$version"),
+                        string(name: 'version', value: "$packageVersion"),
                         string(name: 'environment', value: "dev")
                     ]
                     build job: "Catalogue-CD-Part", wait: true, parameters: params
