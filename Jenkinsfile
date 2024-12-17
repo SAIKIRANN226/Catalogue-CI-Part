@@ -28,7 +28,6 @@ pipeline {
                 sh """
                     npm install
                     echo "Dependencies installed"
-                    npm install -g pm2
                 """
             }
         }
